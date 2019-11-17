@@ -26,6 +26,7 @@ void run_kernel(float* h_in, float* h_out, int n){
     //拷贝host数据到device
     cudaMemcpy(d_in, h_in, in_size, cudaMemcpyHostToDevice);
 
+        
     distance_kernel<<<(N + TPB -1)/TPB,TPB>>>(d_in, d_out, n);
     //拷贝device端计算结果到host
     cudaMemcpy(h_out, d_out, out_size, cudaMemcpyDeviceToHost);

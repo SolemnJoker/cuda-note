@@ -13,4 +13,3 @@ kernel<<<grid_dim,block_dim>>>(args...);
 ## 网络大小限制
 1.block中线程数量最好是32的整数倍，因为cuda执行并发的时候是以线程束（warp）为单位的，一个warp中有32个线程
 2.一个block中线程数量有限,grid大小也有限(有最大限制，不同档次架构的显卡不一样)，可以使用cudaGetDeviceProperties(cudaDeviceProp\*, int)函数查询block和grid的大小限制。
-

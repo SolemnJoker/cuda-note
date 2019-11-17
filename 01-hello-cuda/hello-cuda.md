@@ -29,6 +29,11 @@ blockDim:Dim3,每个线程块中线程的数量<br>
 blockIdx: uint3,当前线程块在网络中的索引<br>
 threadIdx:uint3,当前线程在线程块中的索引<br>
 
+#### cuda定义了一些内置变量可以索引线程:<br>
+threadIdx<br>
+blockIdx<br>
+
+
 ```
 //一维数据索引
 int idx = blockIdx.x * blockDim.x + threadIdx.x;
@@ -36,6 +41,8 @@ int idx = blockIdx.x * blockDim.x + threadIdx.x;
 int x = blockIdx.x * blockDim.x + threadIdx.x;
 int y = blockIdx.y * blockDim.y + threadIdx.y;
 int idx = y*w+x;//w是从外部(host端传过来或者事先赋值的)赋值的二维数据的行宽
+//或者
+int idx  = blockDim.X*(blockIdx.x + blockIdx.y*gridDim.x)+threadIdx.x
 ```
 
 # 补充
